@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option go_package = "pkg/pb";
+
+service Passport {
+  rpc UserLogin (ReqUserLogin) returns (RespUserLogin) {}
+  rpc UserLogout (ReqUserLogout) returns (RespUserLogout) {}
+}
+
+
+// UserLogin
+
+message ReqUserLogin {
+  string username = 1;
+  string password = 2;
+  string scope = 3;
+}
+
+message RespUserLogin {
+  string message = 1;
+}
+
+// UserLogout
+
+message ReqUserLogout {
+}
+
+message RespUserLogout {
+}
