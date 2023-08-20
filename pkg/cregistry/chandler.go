@@ -10,7 +10,7 @@ import (
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
 
-	"github.com/cnhgscc/mirror/pkg/build"
+	"github.com/cnhgscc/passport/pkg/build"
 )
 
 func init() {
