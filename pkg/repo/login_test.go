@@ -23,10 +23,10 @@ func init() {
 
 }
 
-func TestUser(t *testing.T) {
+func TestMySQL(t *testing.T) {
 
 	db := gomysql.S("passport")
 	fmt.Println(db)
-	db.AutoMigrate(&User{})
+	db.AutoMigrate(&Login{})
 
 }
