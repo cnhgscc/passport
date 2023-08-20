@@ -5,12 +5,14 @@ import (
 	"gorm.io/plugin/soft_delete"
 )
 
+type DB = gorm.DB
+
 type M struct {
 	ID        uint                  `gorm:"primarykey"`
 	CreatedAt int                   `gorm:"autoUpdateTime:milli"`
 	UpdatedAt int                   `gorm:"autoUpdateTime:milli"`
 	DeletedAt soft_delete.DeletedAt `gorm:"index;softDelete:milli"`
 
-	DB  *gorm.DB `gorm:"-"`
-	Err error    `gorm:"-"`
+	DB  *DB   `gorm:"-"`
+	Err error `gorm:"-"`
 }

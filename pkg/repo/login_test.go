@@ -27,6 +27,13 @@ func TestMySQL(t *testing.T) {
 
 	db := gomysql.S("passport")
 	fmt.Println(db)
-	db.AutoMigrate(&Login{})
+
+	l := NewLoginAccount("username", "root", WithPassword("123123"))
+	l.DB = db
+	err := l.Auth()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 }

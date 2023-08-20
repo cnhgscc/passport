@@ -32,7 +32,7 @@ func (l *Login) Auth() error {
 	if l.Password != "" {
 		db = db.Where("password=?", l.Password)
 	}
-	l.Err = l.DB.Where("method=? AND username=?").Limit(1).Find(l).Error
+	l.Err = db.Limit(1).Find(l).Error
 	if l.Err != nil {
 		return nil
 	}
@@ -56,7 +56,7 @@ type LoginOption func(login *Login)
 
 func WithPassword(password string) LoginOption {
 	return func(login *Login) {
-		// TODO: md5hasher
+		// TODO: hasher
 		login.Password = password
 	}
 }
