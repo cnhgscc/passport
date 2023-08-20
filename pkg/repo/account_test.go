@@ -1,6 +1,7 @@
 package repo
 
 import (
+	"encoding/json"
 	"fmt"
 	"testing"
 
@@ -26,14 +27,23 @@ func init() {
 func TestMySQL(t *testing.T) {
 
 	db := gomysql.S("passport")
-	fmt.Println(db)
+	db.AutoMigrate(&Account{})
 
-	l := NewLoginAccount("username", "root", WithPassword("123123"))
-	l.DB = db
-	err := l.Auth()
+	fmt.Println(db)
+	l := NewLoginAccount("google", "root1", "127.0.0.1", "xdas123123")
+
+	err := l.Auth(db)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
+
+	marshal, err := json.Marshal(l)
+	if err != nil {
+		return
+	}
+	fmt.Println(string(marshal))
+
+	fmt.Println(l.ID)
 
 }
